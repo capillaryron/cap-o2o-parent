@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cap.o2o.dao.LogExceptionMapper" >
+  <resultMap id="BaseResultMap" type="com.cap.o2o.entity.model.log.LogException" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="method_class" property="methodClass" jdbcType="VARCHAR" />
+    <result column="method_name" property="methodName" jdbcType="VARCHAR" />
+    <result column="request_uri" property="requestUri" jdbcType="VARCHAR" />
+    <result column="request_type" property="requestType" jdbcType="VARCHAR" />
+    <result column="request_ip" property="requestIp" jdbcType="VARCHAR" />
+    <result column="request_args" property="requestArgs" jdbcType="VARCHAR" />
+    <result column="exception_time" property="exceptionTime" jdbcType="TIMESTAMP" />
+    <result column="exception_type" property="exceptionType" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cap.o2o.entity.model.log.LogException" extends="BaseResultMap" >
+    <result column="exception_msg" property="exceptionMsg" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, method_class, method_name, request_uri, request_type, request_ip, request_args, 
+    exception_time, exception_type, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    exception_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from log_exception
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from log_exception
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cap.o2o.entity.model.log.LogException" >
+    insert into log_exception (id, method_class, method_name, 
+      request_uri, request_type, request_ip, 
+      request_args, exception_time, exception_type, 
+      update_time, create_time, exception_msg
+      )
+    values (#{id,jdbcType=VARCHAR}, #{methodClass,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, 
+      #{requestUri,jdbcType=VARCHAR}, #{requestType,jdbcType=VARCHAR}, #{requestIp,jdbcType=VARCHAR}, 
+      #{requestArgs,jdbcType=VARCHAR}, #{exceptionTime,jdbcType=TIMESTAMP}, #{exceptionType,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{exceptionMsg,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cap.o2o.entity.model.log.LogException" >
+    insert into log_exception
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="methodClass != null" >
+        method_class,
+      </if>
+      <if test="methodName != null" >
+        method_name,
+      </if>
+      <if test="requestUri != null" >
+        request_uri,
+      </if>
+      <if test="requestType != null" >
+        request_type,
+      </if>
+      <if test="requestIp != null" >
+        request_ip,
+      </if>
+      <if test="requestArgs != null" >
+        request_args,
+      </if>
+      <if test="exceptionTime != null" >
+        exception_time,
+      </if>
+      <if test="exceptionType != null" >
+        exception_type,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="exceptionMsg != null" >
+        exception_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="methodClass != null" >
+        #{methodClass,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUri != null" >
+        #{requestUri,jdbcType=VARCHAR},
+      </if>
+      <if test="requestType != null" >
+        #{requestType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="requestArgs != null" >
+        #{requestArgs,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTime != null" >
+        #{exceptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionType != null" >
+        #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionMsg != null" >
+        #{exceptionMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cap.o2o.entity.model.log.LogException" >
+    update log_exception
+    <set >
+      <if test="methodClass != null" >
+        method_class = #{methodClass,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="requestUri != null" >
+        request_uri = #{requestUri,jdbcType=VARCHAR},
+      </if>
+      <if test="requestType != null" >
+        request_type = #{requestType,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        request_ip = #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="requestArgs != null" >
+        request_args = #{requestArgs,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTime != null" >
+        exception_time = #{exceptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionType != null" >
+        exception_type = #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionMsg != null" >
+        exception_msg = #{exceptionMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cap.o2o.entity.model.log.LogException" >
+    update log_exception
+    set method_class = #{methodClass,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      request_uri = #{requestUri,jdbcType=VARCHAR},
+      request_type = #{requestType,jdbcType=VARCHAR},
+      request_ip = #{requestIp,jdbcType=VARCHAR},
+      request_args = #{requestArgs,jdbcType=VARCHAR},
+      exception_time = #{exceptionTime,jdbcType=TIMESTAMP},
+      exception_type = #{exceptionType,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      exception_msg = #{exceptionMsg,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cap.o2o.entity.model.log.LogException" >
+    update log_exception
+    set method_class = #{methodClass,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      request_uri = #{requestUri,jdbcType=VARCHAR},
+      request_type = #{requestType,jdbcType=VARCHAR},
+      request_ip = #{requestIp,jdbcType=VARCHAR},
+      request_args = #{requestArgs,jdbcType=VARCHAR},
+      exception_time = #{exceptionTime,jdbcType=TIMESTAMP},
+      exception_type = #{exceptionType,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
