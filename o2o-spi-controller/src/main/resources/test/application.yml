@@ -1,16 +1,20 @@
  server:
-  port: 8083
-
+  port: 8082
+  servlet:
+     context-path: /o2oSpi
  spring:
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
     aop:
         proxy-target-class: true
     datasource:
-        url: jdbc:mysql://rm-dj7t2b5s7cu54p095.mysql.rds.aliyuncs.com/membershiplive?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
-        username: membership
-        password: 1qaz2wsx!QAZ@WSX
+        url: jdbc:mysql://116.62.118.138:3306/alio2o_test?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+        username: ron
+        password: qwer1234@11
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         filters: stat
         maxActive: 20
         initialSize: 1
@@ -29,15 +33,7 @@
   configuration:
       mapUnderscoreToCamelCase: true
 
- tmallmemberpassappkey: 24836884
- tmallmemberpasssecret: aa257d88a94007828436ba63825545fb
- tmallecrmappkey: 23625842
- tmallecrmsecret: a4581eeec2739ac8b1a8ee16d4ba7f18
- tmallurl: http://gw.api.taobao.com/router/rest
- wecrmusername: descente.ecrm.wecrm
- wecrmpassword: 7ef566b2bfcd1f2114790cf42aafc0e2
- capcrmusername: cap.ecrm.tmallo2o
- capcrmpassword: b1e1cae2d54a6615c5cc443e82f9959f
- MQurl: http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet
- MQappid: LTAINkcFyxTKEiUw
- MQappsecret: sx944qIS6kSHvzssJFPeLBbohK5oxc
+
+
+
+ envirDetect: test
